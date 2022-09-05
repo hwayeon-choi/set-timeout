@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {margin:0; padding:0; box-sizing: border-box;}
+    #root {
+      width : 100vw;
+      height : 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <button id="button">button</button>
+  </div>
+  <script>
+    const button = document.getElementById('button');
+    button.style.width = "50px";
+    button.style.backgroundColor = "lightgrey";
+
+    button.addEventListener('click', function(){
+      let size = 0;
+      let pullDownButton = setInterval(function() {
+        size++;
+        button.style.height = `${size}px`;
+  
+        let rotateValue = 0;
+        if(size === 100) {
+          let rotateAnimation = setInterval(function() {
+            rotateValue++;
+            button.style.transform = `rotate(${rotateValue}deg)` 
+            if(rotateValue === 360) {
+              clearInterval(rotateAnimation);
+            }
+          },16);
+          clearInterval(pullDownButton);
+        }
+      },32);
+    });
+  </script>
+</body>
+</html>

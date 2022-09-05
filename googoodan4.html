@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin:0; padding:0; box-sizing: border-box;}
+    #root {
+      width : 100vw;
+      height : 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div id="googoo"></div>
+    <div id="total"></div>
+  </div>
+  <script>
+    const root = document.getElementById('root');
+    const googoo = document.getElementById('googoo');
+    const total = document.getElementById('total');
+
+    function googoodan (dan, limit) {
+      resultArray = [];
+      for(let i = 1; i <= limit; i++) {
+        if(i %1 === 0 && i > 0) {
+          resultArray.push(dan * i);
+        } else if(i %1 !== 0) {
+          resultArray.push(dan * i).toFixed(1);
+        } else if(i < 0) {
+          resultArray.push(Math.abs(dan * i));
+        } else {
+          console.log("입력값을 확인하세요.")
+        }
+      }
+      return resultArray;
+    }
+
+    // function totalValue (dan, limit) {
+    //   for(let i = 0; i < googoodan.length; i++) {
+    //     googoodan[i]+
+    //   }
+    // }
+
+    function googoodanList (dan, limit) {
+      googoodanArray = [];
+      for(let i = 0; i < limit; i++){
+        googoodanArray.push(`${dan} * ${i + 1} 는 ` + googoodan(dan, limit)[i]);
+      }
+      return googoodanArray.join('</br>')
+    }
+    // googoo.innerHTML = googoodanList(2, 9);
+
+    let count = 1; 
+    const googoodanPrint = setInterval(function() {
+      count++;
+      googoo.innerHTML = googoodanList(count, 9);
+      const totalValue = googoodan(count, 9).reduce(function add(sum, currValue) {
+        return sum + currValue;
+      }, 0);
+      total.innerHTML = `${count}단의 총 합계 : ` + totalValue;
+      if(count === 9) {
+        clearInterval(googoodanPrint);
+      }
+    }, 1000);
+
+    googoo.addEventListener('click', function(event) {
+      console.dir(event);
+      event.target.style.display = "hidden";
+      console.log("event 발생");
+    });
+  </script>
+</body>
+</html>

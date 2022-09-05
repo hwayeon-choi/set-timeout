@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin:0; padding:0; box-sizing: border-box;}
+    #root {
+      width : 100vw;
+      height : 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const root = document.getElementById('root');
+
+    // 곱셈이 일어난 횟수
+    let multiplyCounter = 0;
+
+    // 구구단 함수
+    function googoodan (value, count) {
+      let googoodanList = [];
+      for(let i = 0; i < 9; i++) {
+        count++;
+        multiplyCounter++;
+        let temp = `${value} * ${count} 는 ` + value * count;
+        googoodanList.push(temp);
+      }
+      return googoodanList.join('<br/>');
+    }
+    // 문서에 출력 
+    const googoodanPrint = setInterval(function() {
+      root.innerHTML = googoodan(2, 0)
+    }, 500);
+  </script>
+</body>
+</html>

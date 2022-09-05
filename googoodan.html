@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin:0; padding:0; box-sizing: border-box;}
+    #root {
+      width : 100vw;
+      height : 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div id="box"></div>
+  </div>
+  <script>
+    const root = document.getElementById('root');
+    const box = document.getElementById('box');
+    box.style.width = "300px";
+    box.style.height = "100px";
+    box.style.backgroundColor = "limegreen";
+    box.style.textAlign = "center";
+    box.style.lineHeight = "100px";
+    box.style.fontSize = "2rem";
+    box.style.margin = "10px";
+
+    // value : n단, count : 곱하는 값
+    let value = 1;
+    let count = 0;
+    // 곱셈이 일어난 횟수
+    let multiplyCounter = 0;
+
+    // googoodan 1단~9단 문서에 n초 마다 출력
+    const googoodan = setInterval(function() {
+      count++;
+      multiplyCounter++;
+      let result = value * count;
+      box.innerHTML = `${value} * ${count} 는 `+ Math.abs(result);
+      // if(count %1 === 0) {
+      //   box.innerHTML = `${value} * ${count} 는 `+ result.toFixed(1);
+      // }
+      // if(count < 0) {
+        
+      // }
+      if(count === 9) {
+        value++;
+        count = 0;
+        if(value === 10) {
+          clearInterval(googoodan);
+        }      
+      }
+      console.log(multiplyCounter);
+    }, 500);
+  </script>
+</body>
+</html>
